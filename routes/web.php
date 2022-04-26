@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CasalsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CasalsController::class, 'show'])->name('casals.show');
+
+Route::get('insertar-casals', [CasalsController::class, 'create'])->name('casals.insert');
+Route::get('modificar-casals/{id}', [CasalsController::class, 'edit'])->name('casals.update');
+Route::get('borrar-casals/{id}', [CasalsController::class, 'destroyShow'])->name('casals.delete');
+// CATEGORIAS POST
+Route::post('insertar-casals', [CasalsController::class, 'create'])->name('casals.insert-post');
+// CATEGORIAS PUT
+Route::put('modificar-casals/{id}', [CasalsController::class, 'update'])->name('casals.update-put');
+// CATEGORIAS DELETE
+Route::delete('borrar-casals/{id}', [CasalsController::class, 'destroy'])->name('casals.delete-delete');
